@@ -2,7 +2,6 @@
 // if(process.env.NODE_ENV!="production"){
 require('dotenv').config()
 // }
-console.log("CHECK:", process.env.ATLASDB_URL);
 
 
 
