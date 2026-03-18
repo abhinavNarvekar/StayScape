@@ -1,0 +1,11 @@
+models are same as tables
+1st Table we will need 
+1) Listings
+it will have attributes 
+place
+title
+image
+description
+price
+location
+country
