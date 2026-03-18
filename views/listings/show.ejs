@@ -1,16 +1,16 @@
 <% layout("/layouts/boilerplate") %>
+
 <script>
-    const mapToken="<%=process.env.MAP_TOKEN %>";
-    const listing= <%- JSON.stringify(listing) %>
+    const mapToken = "<%= process.env.MAP_TOKEN %>";
+    const listing = <%- JSON.stringify(listing) %>;
 </script>
+
 <div class="row" style="margin-top: 5px;">
 
-    <!-- Listing Title -->
     <div class="col-8 offset-3">
         <h3><%= listing.title %></h3>
     </div>
 
-    <!-- Listing Card -->
     <div class="card col-6 offset-3 show-card listing-card">
         <img
             src="<%= listing.image.url %>"
@@ -46,8 +46,6 @@
         </div>
     </div>
 
-
-    <!-- Edit + Delete Buttons -->
     <% if(currUser && listing.owner._id.equals(currUser._id)){ %>
 
     <div class="btns">
@@ -69,8 +67,6 @@
 
     <% } %>
 
-
-    <!-- Review Form -->
     <% if(currUser){ %>
 
     <div class="col-8 offset-3 mb-3">
@@ -86,7 +82,6 @@
             class="needs-validation"
         >
 
-            <!-- Star Rating -->
             <fieldset class="starability-slot">
 
                 <legend>Rating</legend>
@@ -117,8 +112,6 @@
 
             </fieldset>
 
-
-            <!-- Comment -->
             <div class="mb-3 mt-3">
 
                 <label for="comment" class="form-label">
@@ -150,21 +143,18 @@
 
     <% } %>
 
-
-    <!-- Reviews Section -->
     <div class="col-8 offset-3">
 
         <hr>
 
-        <% if(listing.reviews.length>0){%>
-        <div class="row">
-        <p><b>All Reviews</b></p>
+        <% if(listing.reviews.length > 0){ %>
 
+        <div class="row">
+            <p><b>All Reviews</b></p>
 
             <% for (let review of listing.reviews) { %>
 
             <div class="card mb-3 col-5 ms-3">
-
                 <div class="card-body">
 
                     <h5 class="card-title">
@@ -175,14 +165,11 @@
                         <%= review.comment %>
                     </p>
 
-                    <!-- Star Display -->
                     <p
                         class="starability-result card-text"
                         data-rating="<%= review.rating %>"
                     ></p>
 
-
-                    <!-- Delete Review -->
                     <% if(currUser && review.author._id.equals(currUser._id)){ %>
 
                     <form
@@ -198,24 +185,21 @@
                     <% } %>
 
                 </div>
-                    <% } %>
-
-
-
             </div>
 
             <% } %>
 
         </div>
-       
 
+        <% } %>
 
     </div>
-     <div class="col-8 offset-3 mb-3">
-            <h3>Where You'll be</h3>
-            <div id="map"></div>
-   
-        </div>
+
+    <div class="col-8 offset-3 mb-3">
+        <h3>Where You'll be</h3>
+        <div id="map"></div>
+    </div>
 
 </div>
-         <script src="/js/map.js"></script>
+
+<script src="/js/map.js"></script>
