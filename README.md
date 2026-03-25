@@ -113,7 +113,8 @@ You can access the live project here:
 
 <img width="2876" height="1622" alt="image" src="https://github.com/user-attachments/assets/51138a8f-e624-4942-b201-754cfc2e0728" />
 <img width="2872" height="1656" alt="image" src="https://github.com/user-attachments/assets/850ddce6-ade2-4eaa-81f6-4d46e24cd212" />
-<img width="2880" height="1532" alt="image" src="https://github.com/user-attachments/assets/38d119fb-deef-4f50-8f0a-c57431083beb" />
+<img width="2852" height="1590" alt="image" src="https://github.com/user-attachments/assets/565fdcc6-41f7-4d91-95dc-34cc52c27fca" />
+
 
 
 
