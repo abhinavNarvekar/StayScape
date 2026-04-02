@@ -24,6 +24,8 @@
             required
         </div>
 
+        <div class="mb-3"> <label class="form-label">Category</label> <select name="listing[category]" class="form-select" required> <option value="" disabled selected hidden>Choose category</option> <option value="rooms">Rooms</option> <option value="iconic">Iconic Cities</option> <option value="mountains">Mountains</option> <option value="castles">Castles</option> <option value="pools">Amazing Pools</option> <option value="camping">Camping</option> <option value="farms">Farms</option> <option value="arctic">Arctic</option> <option value="domes">Domes</option> <option value="boats">Boats</option> </select> <div class="invalid-feedback">Please select a category!</div> </div>
+
 
  
 
@@ -34,6 +36,7 @@
          <input name="listing[price]"  placeholder="Enter Price" class="form-control" required>
          <div class="invalid-feedback">Please Enter a Valid Price!</div>   
        </div>
+       
 
        <div class="mb-3 col-md-8">
         <label for="country" class="form-label" required>Country</label>
