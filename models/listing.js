@@ -37,6 +37,12 @@ const listingSchema = new Schema({
       required: true,
     },
   },
+  bookings: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Booking",
+    },
+  ],
 
   category: {
     type: String,

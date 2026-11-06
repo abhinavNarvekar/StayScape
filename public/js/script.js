@@ -1,11 +1,9 @@
-// Example starter JavaScript for disabling form submissions if there are invalid fields
+// Bootstrap form validation
 (() => {
   'use strict'
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
   const forms = document.querySelectorAll('.needs-validation')
 
-  // Loop over them and prevent submission
   Array.from(forms).forEach(form => {
     form.addEventListener('submit', event => {
       if (!form.checkValidity()) {
@@ -16,4 +14,31 @@
       form.classList.add('was-validated')
     }, false)
   })
-})()
+})();
+
+// Navbar scroll shadow effect
+(() => {
+  const navbar = document.querySelector('.navbar');
+  if (navbar) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 4) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    }, { passive: true });
+  }
+})();
+
+// Auto-dismiss flash messages after 5 seconds
+(() => {
+  const flashAlerts = document.querySelectorAll('.flash-alert');
+  flashAlerts.forEach(alert => {
+    setTimeout(() => {
+      const bsAlert = bootstrap.Alert.getOrCreateInstance(alert);
+      if (bsAlert) {
+        bsAlert.close();
+      }
+    }, 5000);
+  });
+})();

@@ -1,38 +1,29 @@
-    <%layout("/layouts/boilerplate")%>
-    <div class="row mt-3">
-        <h1 class="col-6 offset-3">Login</h1>
-    <div class="col-8 offset-3">
-         <form action="/login" method="POST" class="needs-validation" novalidate>
-         <div class="mb-3">
-            <label for="username" class="form-label">Username </label>
-        <input id="username" name="username" type="text"  class="form-control" required>  
+<% layout("/layouts/boilerplate") %>
 
-        <div class="valid-feedback"> Looks good!</div>
+<div class="auth-page">
+  <div class="auth-card">
+    <h3>Welcome back</h3>
+    <p class="auth-subtitle">Log in to your StayScape account</p>
 
+    <form action="/login" method="POST" class="needs-validation" novalidate>
 
-        </div> 
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input id="username" name="username" type="text" class="form-control" placeholder="Enter your username" required>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
 
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input id="password" name="password" type="password" class="form-control" placeholder="Enter your password" required>
+      </div>
 
-        
+      <button type="submit" class="btn btn-auth">Log In</button>
 
-        <div class="mb-3">
-            <label for="password" class="form-label">Password </label>
-        <input id="password" name="password" type="password"  class="form-control" required>  
+    </form>
 
-
-
-        </div> 
-
-        <button type="submit" class="btn btn-success">SignUp</button>
-
-
-
-            </form>
-
-
-
-
-
-        </div>
-       
+    <div class="auth-footer">
+      Don't have an account? <a href="/signup">Sign up</a>
     </div>
+  </div>
+</div>

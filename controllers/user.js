@@ -20,7 +20,7 @@ module.exports.signup = async (req, res, next) => {
 
             res.redirect(redirectUrl);
         });
-
+ 
     } catch (e) {
         req.flash("error", e.message);
         res.redirect("/signup");

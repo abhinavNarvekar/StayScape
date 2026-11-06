@@ -1,185 +1,234 @@
 <% layout("/layouts/boilerplate") %>
 
-<style>
-    .filter {
-        margin-top: 1rem;
-        text-align: center;
-        opacity: 0.7;
-        flex: 0 0 auto;
-        text-decoration: none;
-        color: inherit;
-    }
+<!-- CATEGORY BAR & CONTROLS -->
+<div class="category-header-sticky">
+  <div class="category-bar-wrapper">
+    <!-- Left scroll chevron -->
+    <button class="category-scroll-arrow scroll-left" id="scrollLeftBtn" type="button" aria-label="Scroll categories left">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
 
-    .filter:hover {
-        opacity: 1;
-        cursor: pointer;
-    }
+    <!-- Scrollable category track -->
+    <div id="filters" class="category-track">
+      <a href="/listings" class="filter <%= !category ? 'active' : '' %>">
+        <div class="filter-icon"><i class="fa-solid fa-border-all"></i></div>
+        <span class="filter-label">All</span>
+      </a>
 
-    .filter.active {
-        opacity: 1;
-        border-bottom: 2px solid black;
-        font-weight: bold;
-    }
+      <a href="/listings?category=rooms" class="filter <%= category === 'rooms' ? 'active' : '' %>">
+        <div class="filter-icon"><i class="fa-solid fa-bed"></i></div>
+        <span class="filter-label">Rooms</span>
+      </a>
 
-    .filter p {
-        font-size: 0.8rem;
-    }
+      <a href="/listings?category=iconic" class="filter <%= category === 'iconic' ? 'active' : '' %>">
+        <div class="filter-icon"><i class="fa-solid fa-mountain-city"></i></div>
+        <span class="filter-label">Iconic Cities</span>
+      </a>
 
-    #filters {
-        display: flex;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        gap: 1rem;
-        padding: 0.5rem;
-        scroll-behavior: smooth;
-    }
+      <a href="/listings?category=mountains" class="filter <%= category === 'mountains' ? 'active' : '' %>">
+        <div class="filter-icon"><i class="fa-solid fa-mountain"></i></div>
+        <span class="filter-label">Mountains</span>
+      </a>
 
-    .tax-info {
-        display: none;
-    }
+      <a href="/listings?category=castles" class="filter <%= category === 'castles' ? 'active' : '' %>">
+        <div class="filter-icon"><i class="fa-brands fa-fort-awesome"></i></div>
+        <span class="filter-label">Castles</span>
+      </a>
 
-    .tax-toggle {
-        border: 1px solid black;
-        border-radius: 1rem;
-        height: 3.25rem;
-        padding: 1rem;
-        margin-left: 1rem;
-        display: flex;
-        align-items: center;
-        flex: 0 0 auto;
-    }
+      <a href="/listings?category=pools" class="filter <%= category === 'pools' ? 'active' : '' %>">
+        <div class="filter-icon"><i class="fa-solid fa-person-swimming"></i></div>
+        <span class="filter-label">Amazing Pools</span>
+      </a>
 
-    .card img {
-        height: 20rem;
-        object-fit: cover;
-    }
+      <a href="/listings?category=camping" class="filter <%= category === 'camping' ? 'active' : '' %>">
+        <div class="filter-icon"><i class="fa-solid fa-campground"></i></div>
+        <span class="filter-label">Camping</span>
+      </a>
 
-    @media (max-width: 768px) {
-        .card img {
-            height: 15rem;
-        }
-    }
-</style>
+      <a href="/listings?category=farms" class="filter <%= category === 'farms' ? 'active' : '' %>">
+        <div class="filter-icon"><i class="fa-solid fa-cow"></i></div>
+        <span class="filter-label">Farms</span>
+      </a>
 
-<div class="container">
+      <a href="/listings?category=arctic" class="filter <%= category === 'arctic' ? 'active' : '' %>">
+        <div class="filter-icon"><i class="fa-regular fa-snowflake"></i></div>
+        <span class="filter-label">Arctic</span>
+      </a>
 
-<!-- FILTER BAR -->
-<div id="filters">
+      <a href="/listings?category=domes" class="filter <%= category === 'domes' ? 'active' : '' %>">
+        <div class="filter-icon"><i class="fa-solid fa-igloo"></i></div>
+        <span class="filter-label">Domes</span>
+      </a>
 
-    <a href="/listings?category=rooms" class="filter <%= category === 'rooms' ? 'active' : '' %>">
-        <div><i class="fa-solid fa-bed"></i></div>
-        <p>Rooms</p>
-    </a>
+      <a href="/listings?category=boats" class="filter <%= category === 'boats' ? 'active' : '' %>">
+        <div class="filter-icon"><i class="fa-solid fa-ship"></i></div>
+        <span class="filter-label">Boats</span>
+      </a>
+    </div>
 
-    <a href="/listings?category=iconic" class="filter <%= category === 'iconic' ? 'active' : '' %>">
-        <div><i class="fa-solid fa-mountain-city"></i></div>
-        <p>Iconic Cities</p>
-    </a>
+    <!-- Right scroll chevron -->
+    <button class="category-scroll-arrow scroll-right" id="scrollRightBtn" type="button" aria-label="Scroll categories right">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
 
-    <a href="/listings?category=mountains" class="filter <%= category === 'mountains' ? 'active' : '' %>">
-        <div><i class="fa-solid fa-mountain"></i></div>
-        <p>Mountains</p>
-    </a>
-
-    <a href="/listings?category=castles" class="filter <%= category === 'castles' ? 'active' : '' %>">
-        <div><i class="fa-brands fa-fort-awesome"></i></div>
-        <p>Castles</p>
-    </a>
-
-    <a href="/listings?category=pools" class="filter <%= category === 'pools' ? 'active' : '' %>">
-        <div><i class="fa-solid fa-person-swimming"></i></div>
-        <p>Amazing Pools</p>
-    </a>
-
-    <a href="/listings?category=camping" class="filter <%= category === 'camping' ? 'active' : '' %>">
-        <div><i class="fa-solid fa-campground"></i></div>
-        <p>Camping</p>
-    </a>
-
-    <a href="/listings?category=farms" class="filter <%= category === 'farms' ? 'active' : '' %>">
-        <div><i class="fa-solid fa-cow"></i></div>
-        <p>Farms</p>
-    </a>
-
-    <a href="/listings?category=arctic" class="filter <%= category === 'arctic' ? 'active' : '' %>">
-        <div><i class="fa-regular fa-snowflake"></i></div>
-        <p>Arctic</p>
-    </a>
-
-    <a href="/listings?category=domes" class="filter <%= category === 'domes' ? 'active' : '' %>">
-        <div><i class="fa-solid fa-igloo"></i></div>
-        <p>Domes</p>
-    </a>
-
-    <a href="/listings?category=boats" class="filter <%= category === 'boats' ? 'active' : '' %>">
-        <div><i class="fa-solid fa-ship"></i></div>
-        <p>Boats</p>
-    </a>
-
-    <!-- SHOW ALL -->
-    <a href="/listings" class="filter <%= !category ? 'active' : '' %>">
-        <div><i class="fa-solid fa-border-all"></i></div>
-        <p>All</p>
-    </a>
-
-    <!-- TAX TOGGLE -->
-    <div class="tax-toggle">
-        <div class="form-check form-switch form-check-reverse">
-            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-            <label class="form-check-label" for="flexSwitchCheckDefault">
-                Display Total After Taxes
-            </label>
+    <!-- Tax Toggle -->
+    <div class="tax-toggle-container">
+      <div class="tax-toggle">
+        <div class="form-check form-switch form-check-reverse m-0 p-0 d-flex align-items-center gap-2">
+          <label class="form-check-label" for="flexSwitchCheckDefault">
+            Display total after taxes
+          </label>
+          <input class="form-check-input m-0" type="checkbox" role="switch" id="flexSwitchCheckDefault">
         </div>
+      </div>
     </div>
-
+  </div>
 </div>
 
-<div class="row mt-3">
+<!-- LISTINGS GRID -->
+<div class="explore-content-wrapper">
+  <% if(allListings.length === 0){ %>
+    <div class="no-listings">
+      <div class="empty-state-icon">
+        <i class="fa-solid fa-magnifying-glass-location"></i>
+      </div>
+      <h4>No stays found</h4>
+      <p>Try searching for a different destination or explore other categories.</p>
+      <a href="/listings" class="btn-clear-filter">
+        <i class="fa-solid fa-arrow-rotate-left"></i>
+        View all stays
+      </a>
+    </div>
+  <% } else { %>
+    <div class="listings-grid">
+      <% for(let listing of allListings){ %>
+        <div class="listing-item">
+          <a class="listing-link" href="/listings/<%= listing._id %>">
+            <div class="listing-card">
+              <!-- MEDIA WRAPPER -->
+              <div class="card-media">
+                <!-- Badge (Guest favourite or category tag) -->
+                <% if (listing.price > 3500) { %>
+                  <div class="card-badge guest-fav">
+                    <i class="fa-solid fa-award"></i>
+                    <span>Guest favourite</span>
+                  </div>
+                <% } else if (listing.category) { %>
+                  <div class="card-badge category-pill">
+                    <span><%= listing.category.charAt(0).toUpperCase() + listing.category.slice(1) %></span>
+                  </div>
+                <% } %>
 
-    <% if(allListings.length === 0){ %>
-        <h4>No listings found for this category 😕</h4>
-    <% } %>
+                <!-- Wishlist Heart Button -->
+                <button class="wishlist-btn" type="button" aria-label="Add to wishlist" onclick="toggleWishlist(event, this)">
+                  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false">
+                    <path d="M16 28c7-4.73 14-10 14-17a6.98 6.98 0 0 0-7-7c-1.8 0-3.58.68-4.95 2.05L16 8.1l-2.05-2.05A7.05 7.05 0 0 0 9 4a6.98 6.98 0 0 0-7 7c0 7 7 12.27 14 17z"></path>
+                  </svg>
+                </button>
 
-    <% for(let listing of allListings){ %>
+                <!-- Listing Image -->
+                <img
+                  src="<%= listing.image.url %>"
+                  class="card-img"
+                  alt="<%= listing.title %>"
+                  loading="lazy"
+                >
 
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-        <a class="listing-link text-decoration-none text-dark" href="/listings/<%= listing._id %>">  
-            <div class="card h-100 listing-card">
-                <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image">
-                
-                <div class="card-img-overlay"></div>
-
-                <div class="card-body">
-                    <p class="card-text">
-                        <b><%= listing.title %></b>
-                        <br>
-                        ₹<%= listing.price.toLocaleString("en-IN") %> / Night
-                        <i class="tax-info"> &nbsp;&nbsp;+18% GST</i>
-                    </p>
+                <!-- Visual Carousel Pagination Dots -->
+                <div class="card-dots" aria-hidden="true">
+                  <span class="dot active"></span>
+                  <span class="dot"></span>
+                  <span class="dot"></span>
+                  <span class="dot"></span>
+                  <span class="dot"></span>
                 </div>
+              </div>
+
+              <!-- CARD CONTENT -->
+              <div class="card-info">
+                <!-- Row 1: Location & Rating -->
+                <div class="card-row-top">
+                  <span class="card-location" title="<%= listing.location %>, <%= listing.country %>">
+                    <%= listing.location %>, <%= listing.country %>
+                  </span>
+                  <span class="card-rating">
+                    <i class="fa-solid fa-star"></i>
+                    <span><%= (4.8 + ((listing.title.length * 7) % 18) / 100).toFixed(2) %></span>
+                  </span>
+                </div>
+
+                <!-- Row 2: Category / Stay Type -->
+                <div class="card-category-text">
+                  <%= listing.category ? (listing.category.charAt(0).toUpperCase() + listing.category.slice(1)) : 'Entire home' %> · StayScape Stay
+                </div>
+
+                <!-- Row 3: Listing Title -->
+                <div class="card-title-text" title="<%= listing.title %>">
+                  <%= listing.title %>
+                </div>
+
+                <!-- Row 4: Pricing -->
+                <div class="card-pricing-row">
+                  <span class="price-val">₹<%= listing.price.toLocaleString("en-IN") %></span>
+                  <span class="price-unit">night</span>
+                  <span class="tax-info">
+                    &nbsp;·&nbsp;<u class="fw-semibold">₹<%= Math.round(listing.price * 1.18).toLocaleString("en-IN") %> total</u>
+                  </span>
+                </div>
+              </div>
             </div>
-        </a>
+          </a>
+        </div>
+      <% } %>
     </div>
-
-    <% } %>
-
-</div>
-
-
+  <% } %>
 </div>
 
 <script>
-    let taxSwitch = document.getElementById("flexSwitchCheckDefault");
+  // Wishlist heart micro-interaction
+  function toggleWishlist(e, btn) {
+    e.preventDefault();
+    e.stopPropagation();
+    btn.classList.toggle('active');
+  }
 
-    taxSwitch.addEventListener("click", () => {
-        let taxInfo = document.getElementsByClassName("tax-info");
-
-        for (let info of taxInfo) {
-            if (info.style.display !== "inline") {
-                info.style.display = "inline";
-            } else {
-                info.style.display = "none";
-            }
-        }
+  // Tax switch toggle functionality
+  const taxSwitch = document.getElementById("flexSwitchCheckDefault");
+  if (taxSwitch) {
+    taxSwitch.addEventListener("change", () => {
+      const taxInfo = document.getElementsByClassName("tax-info");
+      const isChecked = taxSwitch.checked;
+      for (let info of taxInfo) {
+        info.style.display = isChecked ? "inline" : "none";
+      }
     });
+  }
+
+  // Category scroll buttons functionality
+  const filtersTrack = document.getElementById("filters");
+  const scrollLeftBtn = document.getElementById("scrollLeftBtn");
+  const scrollRightBtn = document.getElementById("scrollRightBtn");
+
+  if (filtersTrack && scrollLeftBtn && scrollRightBtn) {
+    function updateScrollArrows() {
+      const scrollLeft = filtersTrack.scrollLeft;
+      const maxScroll = filtersTrack.scrollWidth - filtersTrack.clientWidth;
+      scrollLeftBtn.style.opacity = scrollLeft > 10 ? "1" : "0";
+      scrollLeftBtn.style.pointerEvents = scrollLeft > 10 ? "auto" : "none";
+      scrollRightBtn.style.opacity = scrollLeft < maxScroll - 10 ? "1" : "0";
+      scrollRightBtn.style.pointerEvents = scrollLeft < maxScroll - 10 ? "auto" : "none";
+    }
+
+    scrollLeftBtn.addEventListener("click", () => {
+      filtersTrack.scrollBy({ left: -260, behavior: "smooth" });
+    });
+
+    scrollRightBtn.addEventListener("click", () => {
+      filtersTrack.scrollBy({ left: 260, behavior: "smooth" });
+    });
+
+    filtersTrack.addEventListener("scroll", updateScrollArrows);
+    window.addEventListener("resize", updateScrollArrows);
+    setTimeout(updateScrollArrows, 100);
+  }
 </script>
